@@ -25,6 +25,8 @@ def all_products(request):
                 sortkey = 'lower_name'
                 # Annotation allows us to a add a temp field
                 products = products.annotate(lower_name=Lower('name'))
+            if sortkey == 'category':
+                sortkey = 'category__name'
 
             # check if direction is there
             if 'direction' in request.GET:
