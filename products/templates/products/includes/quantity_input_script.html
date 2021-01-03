@@ -15,7 +15,7 @@
     // Ensure proper enabling/disabling of all inputs on page load
     // Get all quantity inputs on page
     var allQtyInputs = $('.qty_input');
-    // Iterate through and call the enab;e/disable function on each one
+    // Iterate through and call the enable/disable function on each one
     for(var i = 0; i < allQtyInputs.length; i++){
         var itemId = $(allQtyInputs[i]).data('item_id');
         handleEnableDisable(itemId);
