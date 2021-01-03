@@ -1,0 +1,60 @@
+<script type="text/javascript">
+    
+    // Disable +/- buttons outside 1-99 range
+    // Pass the itemID into the function and use it to get the current value of the input
+    function handleEnableDisable(itemId) {
+        var currentValue = parseInt($(`#id_qty_${itemId}`).val());
+        // Disable minus button if less than 2
+        var minusDisabled = currentValue < 2;
+        // Disable plus button if more than 98
+        var plusDisabled = currentValue > 98;
+        $(`#decrement-qty_${itemId}`).prop('disabled', minusDisabled);
+        $(`#increment-qty_${itemId}`).prop('disabled', plusDisabled);
+    }
+
+    // Ensure proper enabling/disabling of all inputs on page load
+    // Get all quantity inputs on page
+    var allQtyInputs = $('.qty_input');
+    // Iterate through and call the enab;e/disable function on each one
+    for(var i = 0; i < allQtyInputs.length; i++){
+        var itemId = $(allQtyInputs[i]).data('item_id');
+        handleEnableDisable(itemId);
+    }
+
+    // Check enable/disable every time the input is changed
+    $('.qty_input').change(function() {
+        var itemId = $(this).data('item_id');
+        handleEnableDisable(itemId);
+    });
+
+    // Increment Quantity
+    $('.increment-qty').click(function(e) {
+        // Prevent the default button action
+        e.preventDefault();
+        /* From the button element go up the tree to the closest input 
+        group class and drill down to the class provided */
+        var closestInput = $(this).closest('.input-group').find('.qty_input')[0];
+        // Cache the value in a new variable
+        var currentValue = parseInt($(closestInput).val());
+        // Use currentValue to set the input box to the current value plus one
+        $(closestInput).val(currentValue + 1);
+        var itemId = $(this).data('item_id');
+        handleEnableDisable(itemId);
+    })
+
+    // Decrement Quantity
+    $('.decrement-qty').click(function(e) {
+        // Prevent the default button action
+        e.preventDefault();
+        /* From the button element go up the tree to the closest input 
+        group class and drill down to the class provided */
+        var closestInput = $(this).closest('.input-group').find('.qty_input')[0];
+        // Cache the value in a new variable
+        var currentValue = parseInt($(closestInput).val());
+        // Use currentValue to set the input box to the current value minus one
+        $(closestInput).val(currentValue - 1);
+        var itemId = $(this).data('item_id');
+        handleEnableDisable(itemId);
+    })
+
+</script>
