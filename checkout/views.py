@@ -6,7 +6,7 @@ from .forms import OrderForm
 
 def checkout(request):
     # Get the bag from the session
-    bag = request.session.get('bag, {}')
+    bag = request.session.get('bag', {})
     # If there's nothing in the bag
     if not bag:
         messages.error(request, "There's nothing in your bag at the moment.")
