@@ -36,6 +36,18 @@
     border: 1px solid #000;
 }
 
+/*Set all select elements and option children to black */
+select,
+select option {
+    color: #000000;
+}
+
+/*Set to grey if invalid as nothing is selected**/
+select:invalid,
+select option[value=""] {
+    color: #aab7c4 !important;
+}
+
 #loading-overlay {
 	display: none;
 	position: fixed;
