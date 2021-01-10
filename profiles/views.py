@@ -10,6 +10,7 @@ def profile(request):
     profile = get_object_or_404(UserProfile, user=request.user)
 
     if request.method == 'POST':
+        # Create a new instance of the user profile form
         form = UserProfileForm(request.POST, instance=profile)
         if form.is_valid():
             form.save()
